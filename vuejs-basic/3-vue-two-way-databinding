@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<title>Vue.js</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+	<b><p>Using v-model</p></b>
+
+	<div id="app">
+		<input type="text" v-model="number">
+		<p>{{number}}</p>
+		<button @click="increase()" >Increase</button>
+	</div>
+
+	<script>
+		new Vue({
+			el:"#app",
+			data:{
+				number:2564
+			},
+			methods:{
+				increase(){
+					this.number++
+				},
+
+			}
+		});
+	
+	</script>
+
+</body>
+</html>

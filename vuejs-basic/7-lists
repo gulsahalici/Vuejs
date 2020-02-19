@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<title>Vue.js</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		ul{
+			margin: 0px;
+			margin-top: 10px;
+			padding: 0px;
+			list-style-type: none;
+			width: 300px;
+		}
+		li{
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			border-bottom: 1px solid #ccc;
+			text-align: left;
+		}
+		.red{
+			background-color: coral;
+		}
+		.green{
+			background-color: limegreen;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+
+		<ul>
+			<li v-for="item in list" >{{ item }}</li>
+		</ul>
+		<hr>
+		
+		<div v-for="(value,key) in personel" >
+			<strong>{{ key}} :</strong><span>{{ value }}</span>
+		</div>
+		<hr>
+		
+		Number : <input type="text" v-model="sellCount">
+		<ul>
+			<li v-for="product in productList" :class="backgroundByCount(product)">
+				<span>{{ product.title }} - {{product.count}} </span> 
+				<button :disabled="product.count<=0" @click="sellProduct(product)" >Sell</button>
+			</li><!--@click="product.count=product.count-sellCount"-->
+		</ul>
+		<p v-if="sellWarning" style="color: red; font-weight: bold;">The amount you entered is more than the stock quantity</p>
+	</div>
+
+	<script>
+		new Vue({
+			el:"#app",
+			data:{
+				sellCount:0,
+				sellWarning:false,
+				list:["Apple","Banana","Strawberry"],
+				personel:{
+					name:"Gülşah",
+					lastname:"Alıcı",
+					number:"1234"
+				},
+				productList:[
+				{
+					title:"Iphone",
+					price:100,
+					count:50
+				},
+				{
+					title:"Apples",
+					price:50,
+					count:0
+				},
+				{
+					title:"Mac Book",
+					price:2850,
+					count:500
+				}
+				]
+			},
+			methods:{
+				sellProduct(product){
+					if(this.sellCount>product.count){
+						this.sellWarning=true
+					}else{
+						product.count=product.count-this.sellCount
+						this.sellWarning=false	
+					}
+				},
+				backgroundByCount(product){
+					return { 'green' : product.count>0, 'red' : product.count<=0 }
+				}
+			}
+
+		});
+	
+	</script>
+
+</body>
+</html>

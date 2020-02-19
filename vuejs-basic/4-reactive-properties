@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<title>Vue.js</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+	<b><p>Difference computed and method, using watch</p></b>
+
+	<div id="app">
+		<input type="text" v-model="age">
+		<p>Javascript : {{ age>=18 ? "Older than 18" : "Younger than 18" }}</p>
+		<p>Method : {{ ageWriter() }}</p>
+		<p>Computed : {{ ageWriterComp }}</p>
+		<hr>
+		<p>{{number}}</p>
+		<button @click="number++" >Increase number</button>	
+	</div>
+
+	<script>
+		new Vue({
+			el:"#app",
+			data:{
+				age:0,
+				number:0
+			},
+			methods:{
+				ageWriter(){
+					console.log("Method working..")
+					return this.age>=18 ? "Older" : "Younger"
+				}
+			},
+			computed:{
+				ageWriterComp(){
+					console.log("Computed working..")
+					return this.age>=18 ? "Older" : "Younger"
+				}
+			},	
+			watch:{
+				age(value1,value2){
+					console.log("New value:"+value1)
+					console.log("Old Value:"+value2)
+				}
+
+			}
+		});
+	
+	</script>
+
+</body>
+</html>

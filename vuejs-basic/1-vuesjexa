@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<title>Vue.js</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<button>{{ buttonTitle }}</button>
+	<!--	<a v-bind:href="link" v-bind:dataI="dataId">Just Click</a> -->
+		<a :href="link" v-bind:dataId="dataId">Click Button</a>
+		<p v-text="paragraph"></p>
+		<p v-html="details"></p>		
+	</div>
+
+	<script>
+		new Vue({
+			el:"#app",
+			data:{
+				title:"Test Titlee",
+				buttonTitle:"Click And Comes..",
+				link:"https://mail.google.com/mail/u/0/#inbox",
+				dataId:"1",
+				paragraph:"Heey this is new paragraph",
+				details:"<h1><b>This is Html code</b></h1>"
+			}
+		});
+	</script>
+
+</body>
+</html>
